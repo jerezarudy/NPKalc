@@ -1,0 +1,263 @@
+﻿<Page x:Class="NPKalc_v3.Views.Calculator.NPKalcPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NPKalc_v3.Views.Calculator" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="800"
+      Loaded="Page_Loaded"
+      Title="NPKalcPage">
+
+    <xctk:BusyIndicator x:Name="biProgress" IsBusy="False" BusyContent="Processing....">
+        <Grid >
+            <materialDesign:Card Padding="10" Margin="16">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="49*"/>
+                        <RowDefinition Height="51*"/>
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="120"/>
+                            <RowDefinition Height="180"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock VerticalAlignment="Center" Grid.ColumnSpan="2" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignHeadline6TextBlock}" FontWeight="Bold">NPKalc</TextBlock>
+                        <GroupBox Grid.Row="1" Style="{x:Null}" Grid.ColumnSpan="2" Header="INFORMATION" Margin="4" FontWeight="Bold">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition Height="32"/>
+                                    <RowDefinition Height="32"/>
+                                    <RowDefinition Height="10"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="City/Municipality:" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,4,4"/>
+                                <ComboBox x:Name="cboCity" SelectionChanged="cboCity_SelectionChanged" Grid.Row="1" Grid.Column="1" Margin="4 0" VerticalAlignment="Bottom"/>
+
+                                <TextBlock Text="Barangay:"  Grid.Row="1" Grid.Column="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,4,4" />
+                                <ComboBox x:Name="cboBarangay"  Grid.Row="1" Grid.Column="4" Margin="4 0" VerticalAlignment="Bottom"/>
+
+                                <TextBlock Text="Name of Farmer:" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,4,4" />
+                                <TextBox x:Name="txtNameOfFarmer" Grid.Column="1" Grid.Row="2" Margin="4 0" VerticalAlignment="Bottom" />
+
+                                <TextBlock Text="Land Area (ha):" Grid.Column="3" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,4,4" />
+                                <TextBox x:Name="txtLandArea"  Grid.Column="4" Grid.Row="2" Margin="4 0" VerticalAlignment="Bottom" PreviewTextInput="txtLandArea_PreviewTextInput" DataObject.Pasting="txtLandArea_Pasting"/>
+                            </Grid>
+
+                        </GroupBox>
+                        <Grid Grid.Row="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <GroupBox  Style="{x:Null}" Header="SOIL LAB" Margin="4" FontWeight="Bold">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition Height="4"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Soil Type:" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,4,4"/>
+                                    <ComboBox x:Name="cboSoilType"   Grid.Column="1" Margin="4 0" VerticalAlignment="Bottom" SelectionChanged="cboSoilType_SelectionChanged"/>
+
+                                    <TextBlock Text="Season:" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,4,4"/>
+                                    <ComboBox x:Name="cboSeason"  Grid.Row="1"  Grid.Column="1" Margin="4 0" VerticalAlignment="Bottom" SelectionChanged="cboSeason_SelectionChanged"/>
+
+                                </Grid>
+                            </GroupBox>
+                            <GroupBox  Style="{x:Null}" Header="Legend" Margin="4" Grid.Row="1" FontWeight="Bold">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="15"/>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition Height="15"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock FontSize="10" Text="L=Low" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,4"/>
+                                    <TextBlock FontSize="10" Text="1=Deficient" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,4"/>
+
+                                    <TextBlock FontSize="10" Grid.Column="1" Text="ML=Medium Low" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,4"/>
+                                    <TextBlock FontSize="10" Grid.Column="1" Text="2=Sufficient" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,4"/>
+
+                                    <TextBlock FontSize="10" Grid.Column="2" Text="MH=Medium High" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,4"/>
+                                    <TextBlock FontSize="10" Grid.Column="2" Text="3=Sufficient*" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,4"/>
+
+                                    <TextBlock FontSize="10" Grid.Column="3" Text="H=High" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,4"/>
+                                    <TextBlock FontSize="10" Grid.Column="3" Text="4=Sufficient**" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,4"/>
+
+                                    <TextBlock FontSize="10" Grid.Column="4" Text="VH=Very High" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,4"/>
+                                    <TextBlock FontSize="10" Grid.Column="4" Text="5=Sufficient***" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,4"/>
+                                </Grid>
+                            </GroupBox>
+                        </Grid>
+                        <Grid  Grid.Row="2" Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <GroupBox Style="{x:Null}" Header="Nitrogen (N)" Margin="4" FontWeight="Bold">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <RadioButton GroupName="rbN" Name="rbN1" Checked="rbN_Checked" Content="L" Margin="10 0"/>
+                                    <RadioButton GroupName="rbN" Name="rbN2" Checked="rbN_Checked" Content="ML" Margin="10 0"/>
+                                    <RadioButton GroupName="rbN" Name="rbN3" Checked="rbN_Checked" Content="M" Margin="10 0"/>
+                                    <RadioButton GroupName="rbN" Name="rbN4" Checked="rbN_Checked" Content="H" Margin="10 0"/>
+                                    <RadioButton GroupName="rbN" Name="rbN5" Checked="rbN_Checked" Content="VH" Margin="10 0"/>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Style="{x:Null}" Header="Phosphorous (P)" Margin="4" Grid.Row="1" FontWeight="Bold">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <RadioButton GroupName="rbP" Name="rbP1" Checked="rbP_Checked" Content="L" Margin="10 0"/>
+                                    <RadioButton GroupName="rbP" Name="rbP2" Checked="rbP_Checked" Content="ML" Margin="10 0"/>
+                                    <RadioButton GroupName="rbP" Name="rbP3" Checked="rbP_Checked" Content="M" Margin="10 0"/>
+                                    <RadioButton GroupName="rbP" Name="rbP4" Checked="rbP_Checked" Content="H" Margin="10 0"/>
+                                    <RadioButton GroupName="rbP" Name="rbP5" Checked="rbP_Checked" Content="VH" Margin="10 0"/>
+                                </StackPanel>
+
+                            </GroupBox>
+                            <GroupBox Style="{x:Null}" Header="Potassium (K)" Margin="4" Grid.Row="2" FontWeight="Bold">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <RadioButton GroupName="rbK" Name="rbK1" Checked="rbK_Checked" Content="1" Margin="10 0"/>
+                                    <RadioButton GroupName="rbK" Name="rbK2" Checked="rbK_Checked" Content="2" Margin="10 0"/>
+                                    <RadioButton GroupName="rbK" Name="rbK3" Checked="rbK_Checked" Content="3" Margin="10 0"/>
+                                    <RadioButton GroupName="rbK" Name="rbK4" Checked="rbK_Checked" Content="4" Margin="10 0"/>
+                                    <RadioButton GroupName="rbK" Name="rbK5" Checked="rbK_Checked" Content="5" Margin="10 0"/>
+                                </StackPanel>
+
+                            </GroupBox>
+                        </Grid>
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40*"/>
+                            <ColumnDefinition Width="30*"/>
+                            <ColumnDefinition Width="30*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition Height="32"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.ColumnSpan="3">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0,0,10,0" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignHeadline6TextBlock}" FontWeight="Bold">Recommended Fertilizer Rate:</TextBlock>
+                                <Grid Width="200" Margin="0,0,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="12"/>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="12"/>
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30*"/>
+                                        <RowDefinition Height="70*"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="N" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
+                                    <TextBlock Text="-" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" FontWeight="Bold"/>
+                                    <TextBlock Text="P" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
+                                    <TextBlock Text="-" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="3" FontWeight="Bold"/>
+                                    <TextBlock Text="K" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
+
+                                    <TextBox IsReadOnly="True" x:Name="tbN" Background="LightYellow" FontWeight="Bold" Grid.Row="1" Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="20" Padding="0" HorizontalContentAlignment="Center"/>
+                                    <TextBox IsReadOnly="True" x:Name="tbP" Background="LightYellow" FontWeight="Bold" Grid.Row="1" Grid.Column="2" Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="20" Padding="0" HorizontalContentAlignment="Center"/>
+                                    <TextBox IsReadOnly="True" x:Name="tbK" Background="LightYellow" FontWeight="Bold" Grid.Row="1" Grid.Column="4" Style="{StaticResource MaterialDesignOutlinedTextBox}" Height="20" Padding="0" HorizontalContentAlignment="Center"/>
+                                </Grid>
+
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Row="1" Grid.RowSpan="2" Margin="2">
+                            <Grid.RowDefinitions >
+                                <RowDefinition Height="32"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Button Content="Add Fertilizer" x:Name="btnAddFertilizer" Click="btnAddFertilizer_Click" Style="{StaticResource MaterialDesignRaisedSecondaryButton}" Width="140" HorizontalAlignment="Left" />
+
+
+                            <DataGrid Grid.Row="1" Margin="0 4 0 0" x:Name="dgFertilizer" AutoGenerateColumns="False" IsReadOnly="True">
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Style="{StaticResource MaterialDesignIconButton}" Margin="0" Padding="0" Height="30" Width="30" Click="Button_Click" Foreground="#ff4747">
+                                                    <materialDesign:PackIcon Kind="Trash" />
+                                                </Button>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="No of Bags" Binding="{Binding NoOfBags}"/>
+                                    <DataGridTextColumn Header="Fertilizer Type"  Binding="{Binding FertilizerName}"/>
+                                    <DataGridTextColumn Header="NPK Ratio"  Binding="{Binding npkRatio}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+
+                        <Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Margin="2">
+                            <Grid.RowDefinitions >
+                                <RowDefinition Height="32"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="FOR 100% YIELD" FontWeight="Bold" FontSize="16" VerticalAlignment="Bottom"/>
+                            <DataGrid Grid.Row="1" Margin="0 4 0 0"  x:Name="dg100Yield" AutoGenerateColumns="False" IsReadOnly="True">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="No of Kgs" Binding="{Binding NoOfBags}"/>
+                                    <DataGridTextColumn Header="Fertilizer Type"  Binding="{Binding FertilizerName}"/>
+                                    <DataGridTextColumn Header="NPK Ratio"  Binding="{Binding npkRatio}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                        <Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Margin="2">
+                            <Grid.RowDefinitions >
+                                <RowDefinition Height="32"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="FOR PROJECTED YIELD" FontWeight="Bold" FontSize="16" VerticalAlignment="Bottom"/>
+                            <DataGrid Grid.Row="1" Margin="0 4 0 0" x:Name="dgProjectedYield" AutoGenerateColumns="False" IsReadOnly="True">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Fertilizer Type"  Binding="{Binding FertilizerName}"/>
+                                    <DataGridTextColumn Header="Available(Kgs)" Binding="{Binding NoOfKgs}"/>
+                                    <DataGridTextColumn Header="Lacking(Kgs)" Binding="{Binding NoTotalOfKgs}" Foreground="Red"/>
+                                    <DataGridTextColumn Header="NPK Ratio"  Binding="{Binding npkRatio}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                        <Button Content="Calculate" x:Name="btnCalculate" Click="btnCalculate_Click" Grid.Row="3" Background="Green" BorderBrush="Green" Width="140" HorizontalAlignment="Center" />
+                        <Button Content="SAVE" Grid.Column="2" Grid.Row="3" Background="Green" BorderBrush="Green" Width="140" HorizontalAlignment="Center" />
+                    </Grid>
+                </Grid>
+            </materialDesign:Card>
+        </Grid>
+    </xctk:BusyIndicator>
+</Page>

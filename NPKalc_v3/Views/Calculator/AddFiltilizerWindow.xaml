@@ -1,0 +1,34 @@
+﻿<Window x:Class="NPKalc_v3.Views.Calculator.AddFiltilizerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NPKalc_v3.Views.Calculator"
+        mc:Ignorable="d"
+        Title="Add Fertilizer" WindowStyle="ToolWindow"
+        Loaded="Window_Loaded"
+        Width="450" Height="200" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="24"/>
+            <RowDefinition Height="14"/>
+            <RowDefinition Height="24"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="32"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="No of Bags:" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,8,0"/>
+        <TextBox x:Name="txtNoOfBags" Grid.Row="1" Grid.Column="1" PreviewTextInput="txtNoOfBags_PreviewTextInput" DataObject.Pasting="txtNoOfBags_Pasting"/>
+
+        <TextBlock Text="Fertilizer:" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,8,0"/>
+        <ComboBox x:Name="cboFertilizer" Grid.Row="3" Grid.Column="1" />
+
+        <Button Grid.Row="5" Grid.Column="1" Click="Button_Click" Width="100" HorizontalAlignment="Right" Content="Add" Background="Green" BorderBrush="Green"/>
+    </Grid>
+</Window>

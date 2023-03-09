@@ -1,0 +1,66 @@
+﻿<Window x:Class="NPKalc_v3.Views.MainDashboard.MainDashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NPKalc_v3.Views.MainDashboard" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="NPKalc - Main Dashboard" Height="740" Width="1280"
+        WindowStartupLocation="CenterScreen"
+    >
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition />
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.RowSpan="3">
+            <Grid>
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="140"/>
+                    <RowDefinition />
+                    <RowDefinition Height="80"/>
+                </Grid.RowDefinitions>
+
+                <materialDesign:Card ></materialDesign:Card>
+                <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignHeadline5TextBlock}" FontWeight="Bold">NPKalc</TextBlock>
+                <Grid Grid.Row="1">
+
+                    <ListView>
+                        <ListViewItem x:Name="lvNPKalc" MouseUp="lvNav_MouseUp">
+                            <TextBlock Margin="8 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignHeadline6TextBlock}" >NPKalc</TextBlock>
+                        </ListViewItem>
+                        <ListViewItem x:Name="lvHistory" MouseUp="lvNav_MouseUp">
+                            <TextBlock Margin="8 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignHeadline6TextBlock}" >History</TextBlock>
+                        </ListViewItem>
+                    </ListView>
+                </Grid>
+                <materialDesign:Card Grid.Row="2"></materialDesign:Card>
+                <ListView Grid.Row="2" >
+                    <ListViewItem >
+                        <StackPanel Orientation="Horizontal" MouseUp="lvSubNav_MouseUp">
+                            <materialDesign:PackIcon Kind="Settings" VerticalAlignment="Center" Margin="0 2 0 0" />
+                            <TextBlock Margin="8 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignSubtitle1TextBlock}" >Settings</TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="lvLogout" MouseUp="lvSubNav_MouseUp">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Logout" VerticalAlignment="Center" Margin="0 2 0 0" />
+                            <TextBlock Margin="8 0 0 0" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignSubtitle1TextBlock}" >Logout</TextBlock>
+                        </StackPanel>
+                        
+                    </ListViewItem>
+                </ListView>
+            </Grid>
+        </Grid>
+        <Grid Grid.RowSpan="3" Grid.Column="1"  Background="Green">
+            <Frame x:Name="MainFrame" Padding="2" NavigationUIVisibility="Hidden"/>
+        </Grid>
+
+    </Grid>
+</Window>
