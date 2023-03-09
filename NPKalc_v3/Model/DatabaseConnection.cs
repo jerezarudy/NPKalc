@@ -137,6 +137,25 @@ namespace NPKalc_v3.Model
             }
         }
 
+        /// <summary>
+        /// to read all the data with parameters
+        /// </summary>
+        /// <param name="cmd"></param>
+        /// <returns></returns>
+        public DataTable ExecuteReaderV2(SqlCommand cmd)
+        {
+            DataTable dt = new DataTable();
+            connOpen();
+            cmd.Connection = conn;
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataReader sdr;
+            sdr = cmd.ExecuteReader();
+            dt.Load(sdr);
+
+            connClose();
+            return dt;
+        }
+
 
         /// <summary>
         /// to read data without parameters

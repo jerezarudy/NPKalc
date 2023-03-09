@@ -254,7 +254,7 @@
                             </DataGrid>
                         </Grid>
                         <Button Content="Calculate" x:Name="btnCalculate" Click="btnCalculate_Click" Grid.Row="3" Background="Green" BorderBrush="Green" Width="140" HorizontalAlignment="Center" />
-                        <Button Content="SAVE" Grid.Column="2" Grid.Row="3" Background="Green" BorderBrush="Green" Width="140" HorizontalAlignment="Center" />
+                        <Button Content="SAVE" x:Name="btnSave" Grid.Column="2" Grid.Row="3" Background="Green" BorderBrush="Green" Width="140" HorizontalAlignment="Center" Click="btnSave_Click"/>
                     </Grid>
                 </Grid>
             </materialDesign:Card>

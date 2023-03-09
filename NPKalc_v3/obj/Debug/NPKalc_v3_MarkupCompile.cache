@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Asus\source\repos\NPKalc_v3\NPKalc_v3\App.xaml
-61233449440
+7444381172
 
-241677777481
+25835120845
 20-1392148122
-MainWindow.xaml;Views\Calculator\AddFiltilizerWindow.xaml;Views\Calculator\NPKalcPage.xaml;Views\History\HistoryPage.xaml;Views\Login.xaml;Views\MainDashboard\MainDashboard.xaml;
+MainWindow.xaml;Views\Calculator\AddFiltilizerWindow.xaml;Views\Calculator\NPKalcPage.xaml;Views\Calculator\SMSWindow.xaml;Views\History\HistoryPage.xaml;Views\Login.xaml;Views\MainDashboard\MainDashboard.xaml;
 
 False
 

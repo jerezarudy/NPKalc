@@ -32,6 +32,8 @@ namespace NPKalc_v3.Views.Calculator
         CalculateController cCtrl = new CalculateController();
         private static readonly Regex _regex = new Regex("[^0-9.-]+");
         DataTable dtFirtilizers = new DataTable();
+        DataTable dt100Yield = new DataTable();
+        DataTable dtProjectedYield = new DataTable();
 
         int Nitrogen = 0;
         int Phosphorous = 0;
@@ -1073,6 +1075,8 @@ namespace NPKalc_v3.Views.Calculator
                 result = cCtrl.CalculateNPK(cCtrl, calculationType, N_Counter, P_Counter, K_Counter);
 
                 Dispatcher.Invoke((Action)(() => {
+                    dt100Yield = result.Item1;
+                    dtProjectedYield = result.Item2;
                     dg100Yield.ItemsSource = result.Item1.DefaultView;
                     dgProjectedYield.ItemsSource = result.Item2.DefaultView;
                 }));
@@ -1083,6 +1087,12 @@ namespace NPKalc_v3.Views.Calculator
             };
             worker.RunWorkerAsync();
 
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            SMSWindow sms = new SMSWindow();
+            sms.ShowDialog();
         }
     }
 }

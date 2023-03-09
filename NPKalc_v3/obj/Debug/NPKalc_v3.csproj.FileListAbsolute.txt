@@ -47,3 +47,5 @@ C:\Users\Asus\source\repos\NPKalc_v3\NPKalc_v3\bin\Debug\ro\Xceed.Wpf.AvalonDock
 C:\Users\Asus\source\repos\NPKalc_v3\NPKalc_v3\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\Asus\source\repos\NPKalc_v3\NPKalc_v3\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\Asus\source\repos\NPKalc_v3\NPKalc_v3\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Asus\source\repos\NPKalc_v3\NPKalc_v3\obj\Debug\Views\Calculator\SMSWindow.g.cs
+C:\Users\Asus\source\repos\NPKalc_v3\NPKalc_v3\obj\Debug\Views\Calculator\SMSWindow.baml

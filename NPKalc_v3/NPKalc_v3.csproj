@@ -113,6 +113,9 @@
     <Compile Include="Views\Calculator\NPKalcPage.xaml.cs">
       <DependentUpon>NPKalcPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Calculator\SMSWindow.xaml.cs">
+      <DependentUpon>SMSWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\History\HistoryPage.xaml.cs">
       <DependentUpon>HistoryPage.xaml</DependentUpon>
     </Compile>
@@ -139,6 +142,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Calculator\NPKalcPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Calculator\SMSWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

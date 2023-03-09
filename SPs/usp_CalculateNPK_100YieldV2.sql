@@ -161,8 +161,10 @@ SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
 						update @dtFertilizersToLoop set isDone = 1 where UniqueID = 3
 						INSERT INTO @dtResult(NoOfBags, FertilizerName) VALUES (@K_Output, @SelectedFertilizerName)
 					END
+					SET @SKIP_P = 1
+					SET @SKIP_K = 1
 				END
-				IF(@P_Counter = 1)
+				IF(@P_Counter = 1 AND @SKIP_P = 0)
 				BEGIN
 					SET @SelectedFertilizerName = (SELECT FertilizerName from @dtFertilizersToLoop where UniqueID = 1)
 					SET @P_Denominator = (SELECT top 1 Fertilizer_P from @dtFertilizersToLoop where UniqueID = 1) * 0.01
@@ -212,8 +214,9 @@ SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
 						update @dtFertilizersToLoop set isDone = 1 where UniqueID = 3
 						INSERT INTO @dtResult(NoOfBags, FertilizerName) VALUES (@K_Output, @SelectedFertilizerName)
 					END
+					SET @SKIP_K = 1
 				END
-				IF(@K_Counter = 1)
+				IF(@K_Counter = 1 AND @SKIP_K = 0)
 				BEGIN
 					SET @SelectedFertilizerName = (SELECT FertilizerName from @dtFertilizersToLoop where UniqueID = 1)
 					SET @K_Denominator = (SELECT top 1 Fertilizer_K from @dtFertilizersToLoop where UniqueID = 1) * 0.01
@@ -296,8 +299,10 @@ SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
 						update @dtFertilizersToLoop set isDone = 1 where UniqueID = 2
 						INSERT INTO @dtResult(NoOfBags, FertilizerName) VALUES (@K_Output, @SelectedFertilizerName)
 					END
+					SET @SKIP_P = 1
+					SET @SKIP_K = 1
 				END
-				IF(@P_Counter = 1)
+				IF(@P_Counter = 1 AND @SKIP_P = 0)
 				BEGIN
 					SET @SelectedFertilizerName = (SELECT FertilizerName from @dtFertilizersToLoop where UniqueID = 1)
 					SET @P_Denominator = (SELECT top 1 Fertilizer_P from @dtFertilizersToLoop where UniqueID = 1) * 0.01
@@ -325,8 +330,9 @@ SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
 						update @dtFertilizersToLoop set isDone = 1 where UniqueID = 2
 						INSERT INTO @dtResult(NoOfBags, FertilizerName) VALUES (@K_Output, @SelectedFertilizerName)
 					END
+					SET @SKIP_K = 1
 				END
-				IF(@K_Counter = 1)
+				IF(@K_Counter = 1 AND @SKIP_K = 0)
 				BEGIN
 					SET @SelectedFertilizerName = (SELECT FertilizerName from @dtFertilizersToLoop where UniqueID = 1)
 					SET @K_Denominator = (SELECT top 1 Fertilizer_K from @dtFertilizersToLoop where UniqueID = 1) * 0.01
@@ -414,6 +420,7 @@ SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
 						INSERT INTO @dtResult(NoOfBags, FertilizerName) VALUES (@K_Output, @SelectedFertilizerName)
 					END
 					SET @SKIP_P = 1
+					SET @SKIP_K = 1
 				END
 				IF(@P_Counter = 1 and  @SKIP_P = 0)
 				BEGIN
@@ -552,6 +559,7 @@ SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
 						INSERT INTO @dtResult(NoOfBags, FertilizerName) VALUES (@K_Output, @SelectedFertilizerName)
 					END
 					SET @SKIP_P = 1
+					SET @SKIP_K = 1
 				END
 				IF(@P_Counter = 1 AND @SKIP_P = 0)
 				BEGIN

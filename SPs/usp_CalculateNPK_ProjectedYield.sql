@@ -58,6 +58,7 @@ SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
 	DECLARE @N_Output Decimal(30,2) = 0
 	DECLARE @P_Output Decimal(30,2) = 0
 	DECLARE @K_Output Decimal(30,2) = 0
+	DECLARE @SKIP_N BIT = 0
 	DECLARE @SKIP_P BIT = 0
 	DECLARE @SKIP_K BIT = 0
 	DECLARE @SKIP_SUB_N BIT = 0
@@ -104,7 +105,7 @@ SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
 
 	
 
-
+	
 	-- Calculation for Nitrogen
 	if(@calculationType = 3)
 		BEGIN
@@ -414,6 +415,7 @@ SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
 						INSERT INTO @dtResult(NoOfBags, FertilizerName) VALUES (@K_Output, @SelectedFertilizerName)
 					END
 					SET @SKIP_P = 1
+					SET @SKIP_K = 1
 				END
 				IF(@P_Counter = 1 and  @SKIP_P = 0)
 				BEGIN
@@ -552,6 +554,7 @@ SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
 						INSERT INTO @dtResult(NoOfBags, FertilizerName) VALUES (@K_Output, @SelectedFertilizerName)
 					END
 					SET @SKIP_P = 1
+					SET @SKIP_K = 1
 				END
 				IF(@P_Counter = 1 AND @SKIP_P = 0)
 				BEGIN
