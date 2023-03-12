@@ -159,8 +159,8 @@
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="40*"/>
-                            <ColumnDefinition Width="30*"/>
-                            <ColumnDefinition Width="30*"/>
+                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width="35*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"/>
@@ -231,9 +231,9 @@
                             <TextBlock Text="FOR 100% YIELD" FontWeight="Bold" FontSize="16" VerticalAlignment="Bottom"/>
                             <DataGrid Grid.Row="1" Margin="0 4 0 0"  x:Name="dg100Yield" AutoGenerateColumns="False" IsReadOnly="True">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="No of Kgs" Binding="{Binding NoOfBags}"/>
+                                    <DataGridTextColumn Header="Recommended Amt(Kgs)" Binding="{Binding NoOfBags}"/>
                                     <DataGridTextColumn Header="Fertilizer Type"  Binding="{Binding FertilizerName}"/>
-                                    <DataGridTextColumn Header="NPK Ratio"  Binding="{Binding npkRatio}"/>
+                                    <!--<DataGridTextColumn Header="NPK Ratio"  Binding="{Binding npkRatio}"/>-->
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -241,20 +241,30 @@
                             <Grid.RowDefinitions >
                                 <RowDefinition Height="32"/>
                                 <RowDefinition/>
+                                <RowDefinition Height="32"/>
                             </Grid.RowDefinitions>
 
                             <TextBlock Text="FOR PROJECTED YIELD" FontWeight="Bold" FontSize="16" VerticalAlignment="Bottom"/>
                             <DataGrid Grid.Row="1" Margin="0 4 0 0" x:Name="dgProjectedYield" AutoGenerateColumns="False" IsReadOnly="True">
                                 <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Suggested Amt(Kgs)"  Binding="{Binding ProjectedAmount}"/>
                                     <DataGridTextColumn Header="Fertilizer Type"  Binding="{Binding FertilizerName}"/>
-                                    <DataGridTextColumn Header="Available(Kgs)" Binding="{Binding NoOfKgs}"/>
-                                    <DataGridTextColumn Header="Lacking(Kgs)" Binding="{Binding NoTotalOfKgs}" Foreground="Red"/>
-                                    <DataGridTextColumn Header="NPK Ratio"  Binding="{Binding npkRatio}"/>
+                                    <!--<DataGridTextColumn Header="Available(Kgs)" Binding="{Binding NoOfKgs}"/>-->
+                                    <!--<DataGridTextColumn Header="Lacking(Kgs)" Binding="{Binding NoTotalOfKgs}" Foreground="Red"/>-->
+                                    <!--<DataGridTextColumn Header="NPK Ratio"  Binding="{Binding npkRatio}"/>-->
+                                    <DataGridTextColumn Header="%" Binding="{Binding ProjectedPercentage}"/>
                                 </DataGrid.Columns>
+                                
                             </DataGrid>
+                            <Grid Grid.Row="2">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                    <TextBlock FontSize="16" Text="Total:   " />
+                                    <TextBlock FontSize="16" x:Name="txtTotal" FontWeight="Bold" Text="100%" />
+                                </StackPanel>
+                            </Grid>
                         </Grid>
                         <Button Content="Calculate" x:Name="btnCalculate" Click="btnCalculate_Click" Grid.Row="3" Background="Green" BorderBrush="Green" Width="140" HorizontalAlignment="Center" />
-                        <Button Content="SAVE" x:Name="btnSave" Grid.Column="2" Grid.Row="3" Background="Green" BorderBrush="Green" Width="140" HorizontalAlignment="Center" Click="btnSave_Click"/>
+                        <Button Content="SAVE" x:Name="btnSave" Grid.Column="2" Grid.Row="3" Background="Green" BorderBrush="Green" Width="140" HorizontalAlignment="Center" Click="btnSave_Click" IsEnabled="False"/>
                     </Grid>
                 </Grid>
             </materialDesign:Card>

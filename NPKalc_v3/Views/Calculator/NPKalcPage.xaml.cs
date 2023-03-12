@@ -57,7 +57,7 @@ namespace NPKalc_v3.Views.Calculator
         private void InitializeFields()
         {
             dtFirtilizers.Columns.Add("FertilizerID", typeof(int));
-            dtFirtilizers.Columns.Add("NoOfBags", typeof(int));
+            dtFirtilizers.Columns.Add("NoOfBags", typeof(decimal));
             dtFirtilizers.Columns.Add("FertilizerName");
             dtFirtilizers.Columns.Add("Fertilizer_N");
             dtFirtilizers.Columns.Add("Fertilizer_P");
@@ -944,6 +944,10 @@ namespace NPKalc_v3.Views.Calculator
             int P_Sum = 0;
             int K_Sum = 0;
 
+            decimal N_Percentage = 0;
+            decimal P_Percentage = 0;
+            decimal K_Percentage = 0;
+
             if (string.IsNullOrEmpty(txtLandArea.Text))
             {
                 MessageBox.Show("Please input No of Land Area", "WARNING", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -1077,8 +1081,21 @@ namespace NPKalc_v3.Views.Calculator
                 Dispatcher.Invoke((Action)(() => {
                     dt100Yield = result.Item1;
                     dtProjectedYield = result.Item2;
+
+                    cCtrl.dtFor100Yield = result.Item1;
+                    cCtrl.dtForProjectedYield = result.Item2;
+
                     dg100Yield.ItemsSource = result.Item1.DefaultView;
                     dgProjectedYield.ItemsSource = result.Item2.DefaultView;
+
+                    txtTotal.Text = result.Item2.AsEnumerable().Sum(x => x.Field<decimal>("ProjectedPercentage")).ToString() + " %";
+                    foreach (DataRow item in result.Item2.Rows)
+                    {
+                        N_Percentage += Convert.ToDecimal(item["N_Percentage"]);
+                        P_Percentage += Convert.ToDecimal(item["P_Percentage"]);
+                        K_Percentage += Convert.ToDecimal(item["K_Percentage"]);
+                    }
+                    btnSave.IsEnabled = true;
                 }));
             };
             worker.RunWorkerCompleted += (o, ea) =>
@@ -1091,8 +1108,37 @@ namespace NPKalc_v3.Views.Calculator
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            SMSWindow sms = new SMSWindow();
-            sms.ShowDialog();
+            // populate object
+            cCtrl.TownCity = cboCity.Text;
+            cCtrl.Barangay = cboBarangay.Text;
+            cCtrl.NameOfFarmer = txtNameOfFarmer.Text;
+            cCtrl.LandArea = Convert.ToInt32(txtLandArea.Text);
+            cCtrl.SoilType = cboSoilType.Text;
+            cCtrl.Season = cboSeason.Text;
+            cCtrl.Total = txtTotal.Text;
+            cCtrl.Nitrogen = Nitrogen;
+            cCtrl.Phosphorous = Phosphorous;
+            cCtrl.Potassium = Potassium;
+
+            MessageBoxResult mbr = MessageBox.Show("Are you sure you want to save calculations?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            if (mbr == MessageBoxResult.Yes)
+            {
+                if (cCtrl.CalculationInsert(cCtrl))
+                {
+
+                    MessageBox.Show("Calculation saved.", "Success", MessageBoxButton.OK);
+
+                    SMSWindow sms = new SMSWindow(cCtrl);
+                    sms.ShowDialog();
+
+                }
+                else
+                {
+                    MessageBox.Show("Error saving.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                }
+            }
+
         }
     }
 }

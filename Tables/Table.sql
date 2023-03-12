@@ -46,10 +46,11 @@ CREATE TABLE [dbo].[Calculations]
 	Recommended_Nitrogen int null,
 	Recommended_Phosphorous int null,
 	Recommended_Potassium int null,
-	Fertilizer_P int null,
-	Fertilizer_K int null,
+	FertilizerLineID int null,
+	CalculateFor100YieldID int null,
+	CalculateForProjectedYieldID int null,
 	isActive BIT not NULL Default 1,
-	CONSTRAINT [PK_Fertilizers] PRIMARY KEY CLUSTERED ([CalculationID] ASC)
+	CONSTRAINT [PK_Calculations] PRIMARY KEY CLUSTERED ([CalculationID] ASC)
 );
 
 CREATE TABLE [dbo].[FertilizerLines]
@@ -57,29 +58,44 @@ CREATE TABLE [dbo].[FertilizerLines]
 	FertilizerLineID int identity(1,1) ,
 	CalculationID int null,
 	FertilizerID int null,
-	NoOfBags int null,
+	NoOfBags Decimal(11,2) null,
 	FertilizerName nvarchar (500) null,
-	Fertilizer_N int null,
-	Fertilizer_P int null,
-	Fertilizer_K int null,
+	Fertilizer_N Decimal(11,2) null,
+	Fertilizer_P Decimal(11,2) null,
+	Fertilizer_K Decimal(11,2) null,
 	cboDisplay nvarchar (500) null,
 	npkRatio nvarchar (500) null,
 	isActive BIT not NULL Default 1,
 	FertilizerCategory int null,
-	CONSTRAINT [PK_Fertilizers] PRIMARY KEY CLUSTERED ([FertilizerLineID] ASC)
+	CONSTRAINT [PK_FertilizerLines] PRIMARY KEY CLUSTERED ([FertilizerLineID] ASC)
 );
 
 CREATE TABLE [dbo].[CalculateFor100Yield]
 (
 	CalculateFor100YieldID int identity(1,1) ,
 	CalculationID int null,
-	NoOfBags int null,
+	NoOfBags Decimal(11,2) null,
 	FertilizerName nvarchar (500) null,
-	N int null,
-	P int null,
-	K int null,
-	N_Output int null,
-	P_Output int null,
-	K_Output int null,
-	CONSTRAINT [PK_Fertilizers] PRIMARY KEY CLUSTERED ([CalculateFor100YieldID ASC)
+	N Decimal(11,2) null,
+	P Decimal(11,2) null,
+	K Decimal(11,2) null,
+	N_Output Decimal(11,2) null,
+	P_Output Decimal(11,2) null,
+	K_Output Decimal(11,2) null,
+	CONSTRAINT [PK_CalculateFor100Yield] PRIMARY KEY CLUSTERED ([CalculateFor100YieldID] ASC)
+);
+
+CREATE TABLE [dbo].[CalculateForProjectedYield]
+(
+	CalculateForProjectedYieldID int identity(1,1) ,
+	CalculationID int null,
+	NoOfBags Decimal(11,2) null,
+	FertilizerName nvarchar (500) null,
+	N Decimal(11,2) null,
+	P Decimal(11,2) null,
+	K Decimal(11,2) null,
+	N_Output Decimal(11,2) null,
+	P_Output Decimal(11,2) null,
+	K_Output Decimal(11,2) null,
+	CONSTRAINT [PK_CalculateForProjectedYield] PRIMARY KEY CLUSTERED ([CalculateForProjectedYieldID] ASC)
 );

@@ -22,8 +22,8 @@
             <RowDefinition Height="10" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        <TextBlock Text="Phone Number:" x:Name="txtPhoneNumber" VerticalAlignment="Center" HorizontalAlignment="Left" />
-        <TextBox Grid.Column="1"/>
+        <TextBlock Text="Phone Number:" VerticalAlignment="Center" HorizontalAlignment="Left" />
+        <TextBox Grid.Column="1"  x:Name="txtPhoneNumber"/>
 
 
         <TextBlock Text="Message:" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="2" />

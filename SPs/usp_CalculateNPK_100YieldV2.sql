@@ -10,7 +10,7 @@ GO
 CREATE TYPE type_CalculateNPK_100YieldV2 as TABLE
 (
 	[FertilizerID]			int,
-	[NoOfBags]				int,
+	[NoOfBags]				Decimal(11,2),
 	[FertilizerName]		NVARCHAR(500),
 	[Fertilizer_N]			int,
 	[Fertilizer_P]			int,
@@ -44,7 +44,7 @@ SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
 	as Table(
 				[UniqueID] INT IDENTITY(1,1), 
 				[FertilizerID]  int,
-				[NoOfBags]  int,
+				[NoOfBags]  Decimal(11,2),
 				[FertilizerName]  NVARCHAR(500),
 				[Fertilizer_N]  int,
 				[Fertilizer_P]  int,

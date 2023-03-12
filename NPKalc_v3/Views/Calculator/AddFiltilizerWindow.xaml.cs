@@ -102,7 +102,7 @@ namespace NPKalc_v3.Views.Calculator
             {
                 dtFirtilizers.Rows.Add(
                     Convert.ToInt32(item["FertilizerID"]),
-                    Convert.ToInt32(txtNoOfBags.Text),
+                    Convert.ToDecimal(txtNoOfBags.Text),
                     item["FertilizerName"],
                     item["Fertilizer_N"],
                     item["Fertilizer_P"],

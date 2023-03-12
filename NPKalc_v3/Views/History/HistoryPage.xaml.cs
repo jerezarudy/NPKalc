@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NPKalc_v3.Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,21 @@ namespace NPKalc_v3.Views.History
     /// </summary>
     public partial class HistoryPage : Page
     {
+        CalculateController cCtrl = new CalculateController();
         public HistoryPage()
         {
             InitializeComponent();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            dgHistory.ItemsSource = cCtrl.GetAllCalculations().DefaultView;
+        }
+
+        private void btnView_Click(object sender, RoutedEventArgs e)
+        {
+            HistoryViewWindow hvw = new HistoryViewWindow();
+            hvw.ShowDialog();
         }
     }
 }

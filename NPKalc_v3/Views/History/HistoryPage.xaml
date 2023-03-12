@@ -5,13 +5,34 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:NPKalc_v3.Views.History" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="800" Loaded="Page_Loaded"
       Title="HistoryPage">
 
     <Grid>
 
         <materialDesign:Card Padding="32" Margin="16">
-            <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">History</TextBlock>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="32" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignHeadline6TextBlock}" FontWeight="Bold">History</TextBlock>
+                <DataGrid x:Name="dgHistory" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="View" Click="btnView_Click" Grid.Row="3" Background="Green" BorderBrush="Green" Width="140" HorizontalAlignment="Center" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Date" Binding="{Binding CreatedDateTime}"/>
+                        <DataGridTextColumn Header="Name of Farmer"  Binding="{Binding NameOfFarmer}"/>
+                        <DataGridTextColumn Header="Recommended NPK Ratio"  Binding="{Binding RecommendedNPK}"/>
+                        <DataGridTextColumn Header="Projected Yield %"  Binding="{Binding TotalPercentage}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
 
         </materialDesign:Card>
     </Grid>
