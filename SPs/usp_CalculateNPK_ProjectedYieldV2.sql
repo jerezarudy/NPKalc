@@ -39,7 +39,7 @@ AS
 SET NOCOUNT OFF
 SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
 	
-	DECLARE @dtResult as Table =  (exec usp_CalculateNPK_100YieldV2 @dtFertilizers, @LandArea, @N, @P, @K, @calculationType, @N_Counter, @P_Counter, @K_Counter)
+	DECLARE @dtResult as Table(NoOfBags Decimal(11,2), FertilizerName NVARCHAR(500), N INT, P INT, K INT)  (exec usp_CalculateNPK_100YieldV2 @dtFertilizers, @LandArea, @N, @P, @K, @calculationType, @N_Counter, @P_Counter, @K_Counter)
 	
 
 
