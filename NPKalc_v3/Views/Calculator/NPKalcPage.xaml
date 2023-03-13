@@ -259,7 +259,7 @@
                             <Grid Grid.Row="2">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
                                     <TextBlock FontSize="16" Text="Total:   " />
-                                    <TextBlock FontSize="16" x:Name="txtTotal" FontWeight="Bold" Text="100%" />
+                                    <TextBlock FontSize="16" x:Name="txtTotal" FontWeight="Bold" Text="0 %" />
                                 </StackPanel>
                             </Grid>
                         </Grid>
