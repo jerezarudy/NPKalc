@@ -231,7 +231,7 @@ SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
 					BEGIN
 						SET @N_Denominator = (SELECT top 1 Fertilizer_N from @dtFertilizersToLoop where UniqueID = 2) * 0.01
 						SET @N_value_for_numerator = (SELECT top 1 Fertilizer_N from @dtFertilizersToLoop where UniqueID = 1) * 0.01
-						SET @N_Numerator = (@N * @LandArea) - (@K_Numerator * @N_value_for_numerator)
+						SET @N_Numerator = (@N * @LandArea) - (@K_Output * @N_value_for_numerator)
 						SET @N_Output = @N_Numerator/@N_Denominator;
 						update @dtFertilizersToLoop set isDone = 1 where UniqueID = 2
 						INSERT INTO @dtResult(NoOfBags, FertilizerName) VALUES (@N_Output, @SelectedFertilizerName)
@@ -240,7 +240,7 @@ SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
 					BEGIN
 						SET @P_Denominator = (SELECT top 1 Fertilizer_P from @dtFertilizersToLoop where UniqueID = 2) * 0.01
 						SET @P_value_for_numerator = (SELECT top 1 Fertilizer_P from @dtFertilizersToLoop where UniqueID = 1) * 0.01
-						SET @P_Numerator = (@P * @LandArea) - (@K_Numerator * @P_value_for_numerator)
+						SET @P_Numerator = (@P * @LandArea) - (@K_Output * @P_value_for_numerator)
 						SET @P_Output = @P_Numerator/@P_Denominator;
 						update @dtFertilizersToLoop set isDone = 1 where UniqueID = 2
 						INSERT INTO @dtResult(NoOfBags, FertilizerName) VALUES (@P_Output, @SelectedFertilizerName)
@@ -252,7 +252,7 @@ SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
 					BEGIN
 						SET @N_Denominator = (SELECT top 1 Fertilizer_N from @dtFertilizersToLoop where UniqueID = 3) * 0.01
 						SET @N_value_for_numerator = (SELECT top 1 Fertilizer_N from @dtFertilizersToLoop where UniqueID = 1) * 0.01
-						SET @N_Numerator = (@N * @LandArea) - (@K_Numerator * @N_value_for_numerator)
+						SET @N_Numerator = (@N * @LandArea) - (@K_Output * @N_value_for_numerator)
 						SET @N_Output = @N_Numerator/@N_Denominator;
 						update @dtFertilizersToLoop set isDone = 1 where UniqueID = 3
 						INSERT INTO @dtResult(NoOfBags, FertilizerName) VALUES (@N_Output, @SelectedFertilizerName)
@@ -261,7 +261,7 @@ SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
 					BEGIN
 						SET @P_Denominator = (SELECT top 1 Fertilizer_P from @dtFertilizersToLoop where UniqueID = 3) * 0.01
 						SET @P_value_for_numerator = (SELECT top 1 Fertilizer_P from @dtFertilizersToLoop where UniqueID = 1) * 0.01
-						SET @P_Numerator = (@P * @LandArea) - (@K_Numerator * @P_value_for_numerator)
+						SET @P_Numerator = (@P * @LandArea) - (@K_Output * @P_value_for_numerator)
 						SET @P_Output = @P_Numerator/@P_Denominator;
 						update @dtFertilizersToLoop set isDone = 1 where UniqueID = 3
 						INSERT INTO @dtResult(NoOfBags, FertilizerName) VALUES (@P_Output, @SelectedFertilizerName)
