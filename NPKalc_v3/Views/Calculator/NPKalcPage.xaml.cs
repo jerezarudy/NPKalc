@@ -1140,5 +1140,15 @@ namespace NPKalc_v3.Views.Calculator
             }
 
         }
+
+        private void dgFertilizer_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void dg100Yield_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

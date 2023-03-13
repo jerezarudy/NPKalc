@@ -39,44 +39,37 @@ namespace NPKalc_v3.Views.Calculator
             string fertilizersProjected = "";
             foreach (DataRow drf in cCtrl.dtFertilizers.Rows)
             {
-                fertilizers += "\n- " + drf["NoOfBags"].ToString() + " bags of " + drf["FertilizerName"].ToString();
+                fertilizers += "\n     " + drf["FertilizerName"].ToString() + " - " + drf["NoOfBags"].ToString() + "bag/s";
             }
             foreach (DataRow dr100 in cCtrl.dtFor100Yield.Rows)
             {
-                fertilizers100 += "\n- " + dr100["NoOfBags"].ToString() + " Kgs of " + dr100["FertilizerName"].ToString();
+                fertilizers100 += "\n     " + dr100["FertilizerName"].ToString() + " - " + dr100["NoOfBags"].ToString() + " kgs";
             }
             foreach (DataRow drProjected in cCtrl.dtForProjectedYield.Rows)
             {
-                fertilizersProjected += "\n- " + drProjected["ProjectedAmount"].ToString() + " Kgs of " + drProjected["FertilizerName"].ToString();
+                fertilizersProjected += "\n     " + drProjected["FertilizerName"].ToString() + " - " + drProjected["ProjectedAmount"].ToString() + " kgs";
             }
 
-            txtMessage.Text = 
-                "City- "
-                + cCtrl.TownCity
-                + "\nBarangay- "
-                + cCtrl.Barangay
-                + "\nName of Farmer- "
+            txtMessage.Text =
+                "Name of Farmer - "
                 + cCtrl.NameOfFarmer
-                + "\nLand Area- "
-                + cCtrl.LandArea
-                + "\nSoil Type-"
+                +"\nCity - "
+                + cCtrl.TownCity
+                + "\nBarangay - "
+                + cCtrl.Barangay
+                + "\nLand Area - " + cCtrl.LandArea + " ha"
+                + "\n \nSoil Type - "
                 + cCtrl.SoilType
-                + "\nSeason- "
+                + "\nSeason - "
                 + cCtrl.Season
-                + "\nN- "
-                + cCtrl.N
-                + "\nP- "
-                + cCtrl.P
-                + "\nK- "
-                + cCtrl.K
-                + "\n=Fertilizers= "
+                +"\n \nRecommended NPK Ratio " +
+                "\n    (" + cCtrl.N + " - " + cCtrl.P + " - " + cCtrl.K + ")"
+                + "\n\nAvailable Fertilizers "
                 + fertilizers
-                + "\n=For 100 % Yield="
+                + "\n\nAmount (kgs) For 100% Yield"
                 + fertilizers100
-                + "\n=For Projected yield="
-                + fertilizersProjected
-                + "\nProjected Yield- "
-                + cCtrl.Total;
+                + "\n\nAmount (kgs) For " + cCtrl.Total + "Projected yield"
+                + fertilizersProjected;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -90,8 +83,8 @@ namespace NPKalc_v3.Views.Calculator
 
             //// TUP
             string apiUrl = "https://nexmo-v1-jerezarudy22-gmailcom.vercel.app/nexmo/sendsms/";
-            string apiKey = "21304e05";
-            string apiSecret = "c2woaOZqVe9k0jqj";
+            string apiKey = "9565f6bb";
+            string apiSecret = "WXvx7MtRVVnMS7JA";
             //// TUP
 
             // Test
