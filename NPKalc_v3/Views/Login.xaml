@@ -49,9 +49,9 @@
 
                 <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource MaterialDesignHeadline5TextBlock}" FontWeight="Bold">NPKalc</TextBlock>
                 <TextBlock Text="Username:" Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom"/>
-                <TextBox Grid.Row="2" Grid.Column="1" Margin="4"  />
+                <TextBox x:Name="txtUsername" Grid.Row="2" Grid.Column="1" Margin="4"  />
                 <TextBlock Text="Password:" Grid.Row="3" Grid.Column="1" VerticalAlignment="Bottom"/>
-                <PasswordBox Grid.Row="4" Grid.Column="1" Margin="4"  />
+                <PasswordBox x:Name="txtPassword" Grid.Row="4" Grid.Column="1" Margin="4" KeyDown="txtPassword_KeyDown" />
 
             </Grid>
             <Grid  Grid.Row="1">
@@ -62,9 +62,11 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions >
                     <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <Button Grid.Row="0" x:Name="btnLogin" Click="btnLogin_Click" Grid.Column="1" Content="Login" Background="Green" BorderBrush="Green"/>
+                <Button x:Name="btnNewRegister" Click="btnNewRegister_Click" Content="Register Account" Grid.Row="1" Grid.Column="1" Style="{DynamicResource MaterialDesignFlatButton}" Foreground="Blue"/>
             </Grid>
         </Grid>
     </Grid>

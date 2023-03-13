@@ -1,6 +1,7 @@
 ﻿using NPKalc_v3.Controller;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,8 +35,16 @@ namespace NPKalc_v3.Views.History
 
         private void btnView_Click(object sender, RoutedEventArgs e)
         {
-            HistoryViewWindow hvw = new HistoryViewWindow();
-            hvw.ShowDialog();
+
+            try
+            {
+
+                DataRowView drv = dgHistory.SelectedItem as DataRowView;
+                int calculationID = Convert.ToInt32(drv["CalculationID"]);
+                HistoryViewWindow hvw = new HistoryViewWindow(calculationID);
+                hvw.ShowDialog();
+            }
+            catch { }
         }
     }
 }

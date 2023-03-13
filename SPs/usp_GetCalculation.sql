@@ -1,16 +1,17 @@
 
-IF EXISTS (SELECT * FROM sys.procedures WHERE name = 'usp_GetAllCalculations')
-	DROP PROCEDURE usp_GetAllCalculations
+IF EXISTS (SELECT * FROM sys.procedures WHERE name = 'usp_GetCalculation')
+	DROP PROCEDURE usp_GetCalculation
 GO
-CREATE PROCEDURE usp_GetAllCalculations
+CREATE PROCEDURE usp_GetCalculation
 (
-	@isActive		BIT = 0
+	@CalculationID		int
 )
 AS
 SET NOCOUNT OFF
 SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
 	
-	SELECT	CalculationID,          
+	SELECT	
+		CalculationID,          
 			TownCity,          
 			Barangay,          
 			NameOfFarmer,          
@@ -28,10 +29,9 @@ SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
 			CalculateForProjectedYieldID,          
 			isActive,          
 			CreatedDateTime,          
-			TotalPercentage,
-			CONCAT('(', Recommended_Nitrogen, ' - ', Recommended_Phosphorous, ' - ', Recommended_Potassium, ')') as RecommendedNPK
+			TotalPercentage          
 	from	Calculations
-	where	isActive = 1
-	order by 1 desc
+	where	CalculationID = @CalculationID
+	AND		isActive = 1
 GO
 

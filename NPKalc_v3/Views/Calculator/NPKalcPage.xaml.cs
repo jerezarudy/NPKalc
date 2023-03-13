@@ -38,6 +38,7 @@ namespace NPKalc_v3.Views.Calculator
         int Nitrogen = 0;
         int Phosphorous = 0;
         int Potassium = 0;
+        string Total = "";
         public NPKalcPage()
         {
             InitializeComponent();
@@ -1088,7 +1089,9 @@ namespace NPKalc_v3.Views.Calculator
                     dg100Yield.ItemsSource = result.Item1.DefaultView;
                     dgProjectedYield.ItemsSource = result.Item2.DefaultView;
 
-                    txtTotal.Text = result.Item2.AsEnumerable().Sum(x => x.Field<decimal>("ProjectedPercentage")).ToString() + " %";
+                    txtTotal.Text = $"FOR {result.Item2.AsEnumerable().Sum(x => x.Field<decimal>("ProjectedPercentage")).ToString() + " %"} PROJECTED YIELD";
+
+                    Total = result.Item2.AsEnumerable().Sum(x => x.Field<decimal>("ProjectedPercentage")).ToString() + " %";
                     foreach (DataRow item in result.Item2.Rows)
                     {
                         N_Percentage += Convert.ToDecimal(item["N_Percentage"]);
@@ -1115,7 +1118,7 @@ namespace NPKalc_v3.Views.Calculator
             cCtrl.LandArea = Convert.ToInt32(txtLandArea.Text);
             cCtrl.SoilType = cboSoilType.Text;
             cCtrl.Season = cboSeason.Text;
-            cCtrl.Total = txtTotal.Text;
+            cCtrl.Total = Total;
             cCtrl.Nitrogen = Nitrogen;
             cCtrl.Phosphorous = Phosphorous;
             cCtrl.Potassium = Potassium;
@@ -1127,7 +1130,7 @@ namespace NPKalc_v3.Views.Calculator
                 {
 
                     MessageBox.Show("Calculation saved.", "Success", MessageBoxButton.OK);
-
+                    btnSave.IsEnabled = false;
                     SMSWindow sms = new SMSWindow(cCtrl);
                     sms.ShowDialog();
 

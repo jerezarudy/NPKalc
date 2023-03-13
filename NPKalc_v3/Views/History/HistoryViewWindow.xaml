@@ -11,7 +11,7 @@
         <xctk:BusyIndicator x:Name="biProgress" IsBusy="False" BusyContent="Processing....">
             <Grid >
                 <materialDesign:Card Padding="10" Margin="16">
-                    <Grid>
+                    <Grid IsHitTestVisible="False">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
@@ -47,10 +47,10 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="City/Municipality:" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,4,4"/>
-                                    <ComboBox x:Name="cboCity" Grid.Row="1" Grid.Column="1" Margin="4 0" VerticalAlignment="Bottom"/>
+                                    <TextBox x:Name="cboCity" Grid.Row="1" Grid.Column="1" Margin="4 0" VerticalAlignment="Bottom"/>
 
                                     <TextBlock Text="Barangay:"  Grid.Row="1" Grid.Column="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,4,4" />
-                                    <ComboBox x:Name="cboBarangay"  Grid.Row="1" Grid.Column="4" Margin="4 0" VerticalAlignment="Bottom"/>
+                                    <TextBox x:Name="cboBarangay"  Grid.Row="1" Grid.Column="4" Margin="4 0" VerticalAlignment="Bottom"/>
 
                                     <TextBlock Text="Name of Farmer:" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,4,4" />
                                     <TextBox x:Name="txtNameOfFarmer" Grid.Column="1" Grid.Row="2" Margin="4 0" VerticalAlignment="Bottom" />
@@ -78,10 +78,10 @@
                                             <ColumnDefinition />
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Text="Soil Type:" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,4,4"/>
-                                        <ComboBox x:Name="cboSoilType"   Grid.Column="1" Margin="4 0" VerticalAlignment="Bottom" />
+                                        <TextBox x:Name="cboSoilType"   Grid.Column="1" Margin="4 0" VerticalAlignment="Bottom" />
 
                                         <TextBlock Text="Season:" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,4,4"/>
-                                        <ComboBox x:Name="cboSeason"  Grid.Row="1"  Grid.Column="1" Margin="4 0" VerticalAlignment="Bottom" />
+                                        <TextBox x:Name="cboSeason"  Grid.Row="1"  Grid.Column="1" Margin="4 0" VerticalAlignment="Bottom" />
 
                                     </Grid>
                                 </GroupBox>
@@ -231,27 +231,26 @@
                                 <Grid.RowDefinitions >
                                     <RowDefinition Height="32"/>
                                     <RowDefinition/>
-                                    <RowDefinition Height="32"/>
                                 </Grid.RowDefinitions>
 
-                                <TextBlock Text="FOR PROJECTED YIELD" FontWeight="Bold" FontSize="16" VerticalAlignment="Bottom"/>
+                                <TextBlock x:Name="txtTotal" Text="FOR PROJECTED YIELD" FontWeight="Bold" FontSize="16" VerticalAlignment="Bottom"/>
                                 <DataGrid Grid.Row="1" Margin="0 4 0 0" x:Name="dgProjectedYield" AutoGenerateColumns="False" IsReadOnly="True">
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Suggested Amt(Kgs)"  Binding="{Binding ProjectedAmount}"/>
+                                        <DataGridTextColumn Header="Suggested Amt(Kgs)"  Binding="{Binding SuggestedAmount}"/>
                                         <DataGridTextColumn Header="Fertilizer Type"  Binding="{Binding FertilizerName}"/>
                                         <!--<DataGridTextColumn Header="Available(Kgs)" Binding="{Binding NoOfKgs}"/>-->
                                         <!--<DataGridTextColumn Header="Lacking(Kgs)" Binding="{Binding NoTotalOfKgs}" Foreground="Red"/>-->
                                         <!--<DataGridTextColumn Header="NPK Ratio"  Binding="{Binding npkRatio}"/>-->
-                                        <DataGridTextColumn Header="%" Binding="{Binding ProjectedPercentage}"/>
+                                        <DataGridTextColumn Header="%" Binding="{Binding FertilizerPercentage}"/>
                                     </DataGrid.Columns>
 
                                 </DataGrid>
-                                <Grid Grid.Row="2">
+                                <!--<Grid Grid.Row="2">
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
                                         <TextBlock FontSize="16" Text="Total:   " />
                                         <TextBlock FontSize="16" x:Name="txtTotal" FontWeight="Bold" Text="100%" />
                                     </StackPanel>
-                                </Grid>
+                                </Grid>-->
                             </Grid>
                             
                         </Grid>

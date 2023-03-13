@@ -24,6 +24,7 @@
                 <Grid.RowDefinitions >
                     <RowDefinition Height="140"/>
                     <RowDefinition />
+                    <RowDefinition Height="40"/>
                     <RowDefinition Height="80"/>
                 </Grid.RowDefinitions>
 
@@ -40,8 +41,13 @@
                         </ListViewItem>
                     </ListView>
                 </Grid>
-                <materialDesign:Card Grid.Row="2"></materialDesign:Card>
-                <ListView Grid.Row="2" >
+                <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="8 0 0 0">
+                    <materialDesign:PackIcon Kind="UserOutline" VerticalAlignment="Center" Margin="0 2 8 0"/>
+                    <TextBlock Text="fullname" x:Name="txtUserFullName"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+
+                </StackPanel>
+                <materialDesign:Card Grid.Row="3"></materialDesign:Card>
+                <ListView Grid.Row="3" >
                     <ListViewItem >
                         <StackPanel Orientation="Horizontal" MouseUp="lvSubNav_MouseUp">
                             <materialDesign:PackIcon Kind="Settings" VerticalAlignment="Center" Margin="0 2 0 0" />

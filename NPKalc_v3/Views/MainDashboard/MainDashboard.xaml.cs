@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NPKalc_v3.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace NPKalc_v3.Views.MainDashboard
         {
             InitializeComponent();
             MainFrame.Navigate(new Calculator.NPKalcPage());
+            txtUserFullName.Text = Globals.FullName;
         }
         private void DockPanel_MouseDown(object sender, MouseButtonEventArgs e)
         {

@@ -99,3 +99,12 @@ CREATE TABLE [dbo].[CalculateForProjectedYield]
 	K_Output Decimal(11,2) null,
 	CONSTRAINT [PK_CalculateForProjectedYield] PRIMARY KEY CLUSTERED ([CalculateForProjectedYieldID] ASC)
 );
+CREATE TABLE [dbo].[Users]
+(
+	UserID int identity(1,1) ,
+	FullName nvarchar (500) null,
+	Username nvarchar (500) null,
+	UserPassword nvarchar (Max) null,
+	isActive BIT not NULL Default 1,
+	CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED ([UserID] ASC)
+);

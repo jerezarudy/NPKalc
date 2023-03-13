@@ -106,7 +106,7 @@ namespace NPKalc_v3.Controller
                                 Convert.ToDecimal(item["P_Output"]),
                                 Convert.ToDecimal(item["K_Output"]),
                                 Convert.ToDecimal(item["NoOfKgs"]),
-                                Convert.ToDecimal(item["TotalNoOfKgs"]),
+                                Convert.ToDecimal(item["NoTotalOfKgs"]),
                                 Convert.ToDecimal(item["N"]),
                                 Convert.ToDecimal(item["P"]),
                                 Convert.ToDecimal(item["K"]),
@@ -207,7 +207,7 @@ namespace NPKalc_v3.Controller
                                 Convert.ToDecimal(item["P_Output"]),
                                 Convert.ToDecimal(item["K_Output"]),
                                 Convert.ToDecimal(item["NoOfKgs"]),
-                                Convert.ToDecimal(item["TotalNoOfKgs"]),
+                                Convert.ToDecimal(item["NoTotalOfKgs"]),
                                 Convert.ToDecimal(item["N"]),
                                 Convert.ToDecimal(item["P"]),
                                 Convert.ToDecimal(item["K"]),
@@ -269,6 +269,7 @@ namespace NPKalc_v3.Controller
                 return new Tuple<DataTable, DataTable>(new DataTable(), new DataTable());
             }
 
+            // Re
             //try
             //{
             //    cmd = new SqlCommand("usp_CalculateNPK_ProjectedYield");
@@ -327,6 +328,54 @@ namespace NPKalc_v3.Controller
                 cmd = new SqlCommand("usp_GetAllCalculations");
                 cmd.Parameters.AddWithValue("@isActive", isActive);
                 return ExecuteReader(cmd);
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.ToString());
+                return null;
+            }
+        }
+        public CalculateController GetCalculation(int calculationID)
+        {
+            CalculateController cc = new CalculateController();
+            try
+            {
+                cmd = new SqlCommand("usp_GetCalculation");
+                cmd.Parameters.AddWithValue("@CalculationID", calculationID);
+                DataTable dt =  ExecuteReader(cmd);
+
+                if (dt.Rows.Count > 0)
+                {
+                    cc.TownCity = dt.Rows[0]["TownCity"].ToString();
+                    cc.Barangay = dt.Rows[0]["Barangay"].ToString();
+                    cc.NameOfFarmer = dt.Rows[0]["NameOfFarmer"].ToString();
+                    cc.LandArea = Convert.ToInt32(dt.Rows[0]["LandArea"]);
+                    cc.SoilType = dt.Rows[0]["SoilType"].ToString();
+                    cc.Season = dt.Rows[0]["Season"].ToString();
+                    cc.Nitrogen = Convert.ToInt32(dt.Rows[0]["Nitrogen"]);
+                    cc.Phosphorous = Convert.ToInt32(dt.Rows[0]["Phosphorous"]);
+                    cc.Potassium = Convert.ToInt32(dt.Rows[0]["Potassium"]);
+                    cc.N = Convert.ToInt32(dt.Rows[0]["Recommended_Nitrogen"]);
+                    cc.P = Convert.ToInt32(dt.Rows[0]["Recommended_Phosphorous"]);
+                    cc.K = Convert.ToInt32(dt.Rows[0]["Recommended_Potassium"]);
+                    cc.Total = dt.Rows[0]["TotalPercentage"].ToString();
+
+
+                    cmd = new SqlCommand("usp_GetFertilizerLines");
+                    cmd.Parameters.AddWithValue("@CalculationID", calculationID);
+                    cc.dtFertilizers = ExecuteReader(cmd);
+
+                    cmd = new SqlCommand("usp_GetCalculateFor100Yield");
+                    cmd.Parameters.AddWithValue("@CalculationID", calculationID);
+                    cc.dtFor100Yield = ExecuteReader(cmd);
+
+                    cmd = new SqlCommand("usp_GetCalculateForProjectedYield");
+                    cmd.Parameters.AddWithValue("@CalculationID", calculationID);
+                    cc.dtForProjectedYield = ExecuteReader(cmd);
+
+
+                }
+                return cc;
             }
             catch (Exception err)
             {
