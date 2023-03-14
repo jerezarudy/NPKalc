@@ -1088,10 +1088,11 @@ namespace NPKalc_v3.Views.Calculator
 
                     dg100Yield.ItemsSource = result.Item1.DefaultView;
                     dgProjectedYield.ItemsSource = result.Item2.DefaultView;
+                    decimal total = result.Item2.AsEnumerable().Sum(x => x.Field<decimal>("ProjectedPercentage"));
 
-                    txtTotal.Text = $"FOR {result.Item2.AsEnumerable().Sum(x => x.Field<decimal>("ProjectedPercentage")).ToString() + " %"} PROJECTED YIELD";
+                    txtTotal.Text = $"FOR {(total > 100 ? 100 : total) + " %"} PROJECTED YIELD";
 
-                    Total = result.Item2.AsEnumerable().Sum(x => x.Field<decimal>("ProjectedPercentage")).ToString() + " %";
+                    Total = (total > 100 ? 100 : total) + " %";
                     foreach (DataRow item in result.Item2.Rows)
                     {
                         N_Percentage += Convert.ToDecimal(item["N_Percentage"]);

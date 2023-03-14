@@ -65,7 +65,7 @@ namespace NPKalc_v3.Controller
                         foreach (DataRow item in dt2.Rows)
                         {
                             decimal FertilizerPercentage = Convert.ToDecimal(item["NoOfBags"]) / sum100Kg * 100;
-                            decimal ProjectedPercentage = Convert.ToDecimal(item["NoOfBags"]) > 0 ? Convert.ToDecimal(item["TEST1"]) / Convert.ToDecimal(item["NoOfBags"]) * FertilizerPercentage : Convert.ToDecimal(0);
+                            decimal ProjectedPercentage = Convert.ToDecimal(item["NoOfBags"]) > 0 ? (Convert.ToDecimal(item["NoTotalOfKgs"]) < 0 ? Convert.ToDecimal(item["NoOfBags"]) : Convert.ToDecimal(item["TEST1"])) / Convert.ToDecimal(item["NoOfBags"]) * FertilizerPercentage : Convert.ToDecimal(0);
                             string ppString = ProjectedPercentage == 0 ? "0.00" : ProjectedPercentage.ToString("##.##");
                             dtCloned.Rows.Add(
                                 Convert.ToDecimal(item["NoOfBags"]),
@@ -87,7 +87,7 @@ namespace NPKalc_v3.Controller
                                 Convert.ToDecimal(item["Test1Reference"]),
                                 Convert.ToDecimal(item["Test2Reference"]),
                                 Convert.ToDecimal(item["Test3Reference"]),
-                                Convert.ToDecimal(item["TEST1"]), // as ProjectedAmount
+                                (Convert.ToDecimal(item["NoTotalOfKgs"]) < 0 ? Convert.ToDecimal(item["NoOfBags"]) : Convert.ToDecimal(item["TEST1"])), // as ProjectedAmount
                                 ppString
                                 );
                         }
@@ -97,7 +97,7 @@ namespace NPKalc_v3.Controller
                         foreach (DataRow item in dt2.Rows)
                         {
                             decimal FertilizerPercentage = Convert.ToDecimal(item["NoOfBags"]) / sum100Kg * 100;
-                            decimal ProjectedPercentage = Convert.ToDecimal(item["NoOfBags"]) > 0 ? Convert.ToDecimal(item["TEST2"]) / Convert.ToDecimal(item["NoOfBags"]) * FertilizerPercentage : Convert.ToDecimal(0);
+                            decimal ProjectedPercentage = Convert.ToDecimal(item["NoOfBags"]) > 0 ? (Convert.ToDecimal(item["NoTotalOfKgs"]) < 0 ? Convert.ToDecimal(item["NoOfBags"]) : Convert.ToDecimal(item["TEST2"])) / Convert.ToDecimal(item["NoOfBags"]) * FertilizerPercentage : Convert.ToDecimal(0);
                             string ppString = ProjectedPercentage == 0 ? "0.00" : ProjectedPercentage.ToString("##.##");
                             dtCloned.Rows.Add(
                                 Convert.ToDecimal(item["NoOfBags"]),
@@ -119,7 +119,7 @@ namespace NPKalc_v3.Controller
                                 Convert.ToDecimal(item["Test1Reference"]),
                                 Convert.ToDecimal(item["Test2Reference"]),
                                 Convert.ToDecimal(item["Test3Reference"]),
-                                Convert.ToDecimal(item["TEST2"]), // as ProjectedAmount
+                                (Convert.ToDecimal(item["NoTotalOfKgs"]) < 0 ? Convert.ToDecimal(item["NoOfBags"]) : Convert.ToDecimal(item["TEST2"])), // as ProjectedAmount
                                 ppString
                                 );
                         }
@@ -130,7 +130,7 @@ namespace NPKalc_v3.Controller
                         foreach (DataRow item in dt2.Rows)
                         {
                             decimal FertilizerPercentage = Convert.ToDecimal(item["NoOfBags"]) / sum100Kg * 100;
-                            decimal ProjectedPercentage = Convert.ToDecimal(item["NoOfBags"]) > 0 ? Convert.ToDecimal(item["TEST3"]) / Convert.ToDecimal(item["NoOfBags"]) * FertilizerPercentage : Convert.ToDecimal(0);
+                            decimal ProjectedPercentage = Convert.ToDecimal(item["NoOfBags"]) > 0 ? (Convert.ToDecimal(item["NoTotalOfKgs"]) < 0 ? Convert.ToDecimal(item["NoOfBags"]) : Convert.ToDecimal(item["TEST3"])) / Convert.ToDecimal(item["NoOfBags"]) * FertilizerPercentage : Convert.ToDecimal(0);
                             string ppString = ProjectedPercentage == 0 ? "0.00" : ProjectedPercentage.ToString("##.##");
                             dtCloned.Rows.Add(
                                 Convert.ToDecimal(item["NoOfBags"]),
@@ -152,7 +152,7 @@ namespace NPKalc_v3.Controller
                                 Convert.ToDecimal(item["Test1Reference"]),
                                 Convert.ToDecimal(item["Test2Reference"]),
                                 Convert.ToDecimal(item["Test3Reference"]),
-                                Convert.ToDecimal(item["TEST3"]), // as ProjectedAmount
+                                (Convert.ToDecimal(item["NoTotalOfKgs"]) < 0 ? Convert.ToDecimal(item["NoOfBags"]) : Convert.ToDecimal(item["TEST3"])), // as ProjectedAmount
                                 ppString
                                 );
                         }
@@ -165,8 +165,9 @@ namespace NPKalc_v3.Controller
                     {
                         foreach (DataRow item in dt2.Rows)
                         {
+
                             decimal FertilizerPercentage = Convert.ToDecimal(item["NoOfBags"]) / sum100Kg * 100;
-                            decimal ProjectedPercentage = Convert.ToDecimal(item["NoOfBags"]) > 0 ? Convert.ToDecimal(item["TEST1"]) / Convert.ToDecimal(item["NoOfBags"]) * FertilizerPercentage : Convert.ToDecimal(0);
+                            decimal ProjectedPercentage = Convert.ToDecimal(item["NoOfBags"]) > 0 ? (Convert.ToDecimal(item["NoTotalOfKgs"]) < 0 ? Convert.ToDecimal(item["NoOfBags"]) : Convert.ToDecimal(item["TEST1"])) / Convert.ToDecimal(item["NoOfBags"]) * FertilizerPercentage : Convert.ToDecimal(0);
                             string ppString = ProjectedPercentage == 0 ? "0.00" : ProjectedPercentage.ToString("##.##");
                             dtCloned.Rows.Add(
                                 Convert.ToDecimal(item["NoOfBags"]),
@@ -188,7 +189,7 @@ namespace NPKalc_v3.Controller
                                 Convert.ToDecimal(item["Test1Reference"]),
                                 Convert.ToDecimal(item["Test2Reference"]),
                                 Convert.ToDecimal(item["Test3Reference"]),
-                                Convert.ToDecimal(item["TEST1"]), // as ProjectedAmount
+                                (Convert.ToDecimal(item["NoTotalOfKgs"]) < 0 ? Convert.ToDecimal(item["NoOfBags"]) : Convert.ToDecimal(item["TEST1"])), // as ProjectedAmount
                                 ppString
                                 );
                         }
@@ -198,7 +199,7 @@ namespace NPKalc_v3.Controller
                         foreach (DataRow item in dt2.Rows)
                         {
                             decimal FertilizerPercentage = Convert.ToDecimal(item["NoOfBags"]) / sum100Kg * 100;
-                            decimal ProjectedPercentage = Convert.ToDecimal(item["NoOfBags"]) > 0 ? Convert.ToDecimal(item["TEST2"]) / Convert.ToDecimal(item["NoOfBags"]) * FertilizerPercentage : Convert.ToDecimal(0);
+                            decimal ProjectedPercentage = Convert.ToDecimal(item["NoOfBags"]) > 0 ? (Convert.ToDecimal(item["NoTotalOfKgs"]) < 0 ? Convert.ToDecimal(item["NoOfBags"]) : Convert.ToDecimal(item["TEST2"])) / Convert.ToDecimal(item["NoOfBags"]) * FertilizerPercentage : Convert.ToDecimal(0);
                             string ppString = ProjectedPercentage == 0 ? "0.00" : ProjectedPercentage.ToString("##.##");
                             dtCloned.Rows.Add(
                                 Convert.ToDecimal(item["NoOfBags"]),
@@ -220,7 +221,7 @@ namespace NPKalc_v3.Controller
                                 Convert.ToDecimal(item["Test1Reference"]),
                                 Convert.ToDecimal(item["Test2Reference"]),
                                 Convert.ToDecimal(item["Test3Reference"]),
-                                Convert.ToDecimal(item["TEST2"]), // as ProjectedAmount
+                                (Convert.ToDecimal(item["NoTotalOfKgs"]) < 0 ? Convert.ToDecimal(item["NoOfBags"]) : Convert.ToDecimal(item["TEST2"])), // as ProjectedAmount
                                 ppString
                                 );
                         }
@@ -231,7 +232,7 @@ namespace NPKalc_v3.Controller
                         foreach (DataRow item in dt2.Rows)
                         {
                             decimal FertilizerPercentage = Convert.ToDecimal(item["NoOfBags"]) / sum100Kg * 100;
-                            decimal ProjectedPercentage = Convert.ToDecimal(item["NoOfBags"]) > 0 ? Convert.ToDecimal(item["TEST3"]) / Convert.ToDecimal(item["NoOfBags"]) * FertilizerPercentage: Convert.ToDecimal(0);
+                            decimal ProjectedPercentage = Convert.ToDecimal(item["NoOfBags"]) > 0 ? (Convert.ToDecimal(item["NoTotalOfKgs"]) < 0 ? Convert.ToDecimal(item["NoOfBags"]) : Convert.ToDecimal(item["TEST3"])) / Convert.ToDecimal(item["NoOfBags"]) * FertilizerPercentage : Convert.ToDecimal(0);
                             string ppString = ProjectedPercentage == 0 ? "0.00" : ProjectedPercentage.ToString("##.##");
                             dtCloned.Rows.Add(
                                 Convert.ToDecimal(item["NoOfBags"]),
@@ -253,7 +254,7 @@ namespace NPKalc_v3.Controller
                                 Convert.ToDecimal(item["Test1Reference"]),
                                 Convert.ToDecimal(item["Test2Reference"]),
                                 Convert.ToDecimal(item["Test3Reference"]),
-                                Convert.ToDecimal(item["TEST3"]), // as ProjectedAmount
+                                (Convert.ToDecimal(item["NoTotalOfKgs"]) < 0 ? Convert.ToDecimal(item["NoOfBags"]) : Convert.ToDecimal(item["TEST3"])), // as ProjectedAmount
                                 ppString
                                 );
                         }
